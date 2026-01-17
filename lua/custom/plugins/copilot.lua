@@ -1,16 +1,65 @@
 local enabled = (vim.env.AI_COPILOT == "true")
+enabled = true
 
 if not enabled then
 	return {}
 end
 print("Copilot is enabled")
 return {
+	-- INFO: review integration with copilot-lsp NES (next edit suggestion)
+	--{
+	--	"zbirenbaum/copilot.lua",
+	--	dependencies = {
+	--		{
+	--			"copilotlsp-nvim/copilot-lsp",
+	--			config = function()
+	--				vim.g.copilot_nes_debounce = 1000
+	--			end,
+	--		},
+	--	},
+	--	cmd = "Copilot",
+
+	--	-- It's often better to load on InsertEnter or VeryLazy for NES
+	--	event = "InsertEnter",
+	--	config = function()
+	--		require("copilot").setup({
+	--			-- Ensure suggestion and panel are disabled if you ONLY want NES
+	--			-- as they can sometimes conflict visually
+	--			suggestion = { enabled = false },
+	--			panel = { enabled = false },
+	--			nes = {
+	--				enabled = true,
+	--				keymap = {
+	--					accept_and_goto = "<leader>p",
+	--					accept = false,
+	--					dismiss = "<Esc>",
+	--				},
+	--			},
+	--		})
+	--	end,
+	--},
 	{
 		"zbirenbaum/copilot.lua",
+		dependencies = {
+			{
+				"copilotlsp-nvim/copilot-lsp",
+				config = function()
+					vim.g.copilot_nes_debounce = 1000
+				end,
+			},
+		},
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
+				--nes = {
+				--	enabled = true,
+				--	keymap = {
+				--		accept_and_goto = "<leader>p",
+				--		accept = false,
+				--		dismiss = "<Esc>",
+				--	},
+				--},
 				panel = {
 					enabled = true,
 					auto_refresh = false,
