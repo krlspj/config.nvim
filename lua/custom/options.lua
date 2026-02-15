@@ -25,9 +25,9 @@ if build_tags then
 	vim.lsp.enable("gopls")
 end
 
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = false
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
 -- load color scheme
 vim.cmd.colorscheme("tokyonight-night")
