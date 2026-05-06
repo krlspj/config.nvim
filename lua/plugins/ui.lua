@@ -8,8 +8,22 @@ return {
           comments = { italic = false },
         },
       })
+      -- Activate the theme on startup
+      vim.cmd.colorscheme("tokyonight-night")
     end,
   },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+      })
+    end,
+  },
+  { "ellisonleao/gruvbox.nvim", lazy = false },
+  { "Mofiqul/dracula.nvim", lazy = false },
   {
     "echasnovski/mini.statusline",
     config = function()
