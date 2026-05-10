@@ -10,6 +10,7 @@ if vim.g.have_nerd_font then vim.pack.add { gh 'nvim-tree/nvim-web-devicons' } e
 -- gitsigns
 vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
 require('gitsigns').setup {
+  current_line_blame = true, -- Toggle git blame line by default
   signs = {
     add = { text = '+' },
     change = { text = '~' },
