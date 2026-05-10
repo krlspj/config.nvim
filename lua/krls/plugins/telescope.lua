@@ -35,9 +35,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
   callback = function(event)
     local buf = event.buf
-    vim.keymap.set('n', 'grr', builtin.lsp_references, { buffer = buf, desc = '[G]oto [R]eferences' })
-    vim.keymap.set('n', 'gri', builtin.lsp_implementations, { buffer = buf, desc = '[G]oto [I]mplementation' })
-    vim.keymap.set('n', 'grd', builtin.lsp_definitions, { buffer = buf, desc = '[G]oto [D]efinition' })
+    vim.keymap.set('n', 'gr', builtin.lsp_references, { buffer = buf, desc = '[G]oto [R]eferences' })
+    vim.keymap.set('n', 'gi', builtin.lsp_implementations, { buffer = buf, desc = '[G]oto [I]mplementation' })
+    vim.keymap.set('n', 'gd', builtin.lsp_definitions, { buffer = buf, desc = '[G]oto [D]efinition' })
     vim.keymap.set('n', 'gO', builtin.lsp_document_symbols, { buffer = buf, desc = 'Open Document Symbols' })
     vim.keymap.set('n', 'gW', builtin.lsp_dynamic_workspace_symbols, { buffer = buf, desc = 'Open Workspace Symbols' })
     vim.keymap.set('n', 'grt', builtin.lsp_type_definitions, { buffer = buf, desc = '[G]oto [T]ype Definition' })
@@ -59,3 +59,26 @@ vim.keymap.set('n', '<leader>s/', function()
 end, { desc = '[S]earch [/] in Open Files' })
 
 vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = '[S]earch [N]eovim files' })
+
+-- Custom Telescope directory searches
+local utils = require('telescope.utils')
+
+-- 1. Live Grep in current directory
+vim.keymap.set("n", "<leader>fg", function()
+  builtin.live_grep({ cwd = utils.buffer_dir() })
+end, { desc = "[F]ile directory [G]rep" })
+
+-- 2. Find Files in current directory (including hidden files!)
+vim.keymap.set("n", "<leader>ff", function()
+  builtin.find_files({ cwd = utils.buffer_dir(), hidden = true })
+end, { desc = "[F]ind [F]iles in directory" })
+
+-- 3. Search for the word under cursor (or visually selected text) in current directory
+vim.keymap.set({ "n", "v" }, "<leader>fw", function()
+  builtin.grep_string({ cwd = utils.buffer_dir() })
+end, { desc = "Find [W]ord in directory" })
+
+-- Print the directory path
+vim.keymap.set("n", "<leader>sp", function()
+  print("File directory: " .. vim.fn.expand("%:p:h"))
+end, { desc = "[S]how file directory [P]ath" })

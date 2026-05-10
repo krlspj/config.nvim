@@ -31,6 +31,9 @@ vim.o.cursorline = true
 vim.o.scrolloff = 10
 vim.o.confirm = true
 
+-- Enable reading project-local .nvim.lua files for custom LSP/Project settings
+vim.o.exrc = true
+
 -- Diagnostic Config
 vim.diagnostic.config {
   update_in_insert = false,
@@ -49,3 +52,9 @@ vim.diagnostic.config {
     end,
   },
 }
+
+-- Custom Options
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.opt.colorcolumn = "80"

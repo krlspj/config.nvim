@@ -29,6 +29,14 @@ require('which-key').setup {
     { '<leader>t', group = '[T]oggle' },
     { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
     { 'gr', group = 'LSP Actions', mode = { 'n' } },
+    { "<leader>f", group = "File directory" },
+    { "<leader>fg", desc = "Live grep in file directory" },
+    { "<leader>ff", desc = "Find files in file directory" },
+    { "<leader>fw", desc = "Find Word in directory (grep_string)" },
+    { "[f", desc = "Previous function start" },
+    { "]f", desc = "Next function start" },
+    { "<leader>c", group = "Code" },
+    { "<leader>sp", desc = "[S]how file directory [P]ath" },
   },
 }
 

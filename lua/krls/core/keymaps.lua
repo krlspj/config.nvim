@@ -15,3 +15,19 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Custom Keymaps
+vim.keymap.set("n", "<leader>vd", function()
+  vim.diagnostic.open_float({ border = "rounded" })
+end, { desc = "[V]iew [D]iagnostic" })
+
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
+
+-- navigate to function signature ONLY works in go
+vim.keymap.set("n", "[[", function()
+  vim.fn.search([[\v^func]], "bW") -- Backward search for 'func' at line start
+end, { silent = true })
+
+vim.keymap.set("n", "]]", function()
+  vim.fn.search([[\v^func]], "W") -- Forward search
+end, { silent = true })
